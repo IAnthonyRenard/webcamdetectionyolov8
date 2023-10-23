@@ -1,0 +1,46 @@
+# Anthony RENARD 🦊-  23/10/2023
+# Détections d'objets en live par Yolov8n.pt
+
+# Importation des blibliothèques utiles
+import cv2
+import supervision as sv
+from ultralytics import YOLO
+
+
+
+def main():
+    capture = cv2.VideoCapture(0)  # Activation de la caméra
+
+    model = YOLO("yolov8n.pt")
+
+    # Création des boite annotées lors de la détection
+    box_annotator = sv.BoxAnnotator(thickness=1, text_thickness=1, text_scale=1)
+
+    while True:  # Création d'une boucle infinie pour faire de la détection sur la vidéo
+        ret, frame = capture.read()  # Lecture d'une image de la webcam
+
+        result = model(frame)[
+            0
+        ]  # utilisation du model pour détecter les objets sur une trame de la vidéo
+        detections = sv.Detections.from_ultralytics(
+            result
+        )  # Création de l'image avec ses boites de détection et la probabilité associée sur chaque détection
+        etiquettes = [
+            f"{model.model.names[class_id]} {confidence:0.2f}"
+            for _, _, confidence, class_id, _ in detections
+        ]  # Ajout des étiquettes à chaque détection (en plus des problabilités)
+
+        frame = box_annotator.annotate(
+            scene=frame, detections=detections, labels=etiquettes
+        )  # Création de l'image annotée
+
+        cv2.imshow("Detection des objets sur votre webcam par Anthony RENARD", frame)  # Affichage de l'image annotée
+
+        if (
+            cv2.waitKey(30) == 27
+        ):  # Le code ASCII 27 correspond à la touche "Escape" sur un clavier. On attend ici un appuie de 30ms sur l'image webcam pour stopper le processus
+            break
+
+
+if __name__ == "__main__":
+    main()
