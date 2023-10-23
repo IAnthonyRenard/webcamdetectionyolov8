@@ -15,7 +15,7 @@ def main():
 
     model = YOLO("yolov8n.pt") #Chargement du modèle
 
-    # Création des boite annotées lors de la détection
+    # Création des boites annotées lors de la détection
     boite_annotee= sv.BoxAnnotator(thickness=2, text_thickness=1, text_scale=1)
 
     while True:  # Création d'une boucle infinie pour faire de la détection sur la vidéo
@@ -40,7 +40,7 @@ def main():
 
         if (
             cv2.waitKey(30) == 27
-        ):  # Le code ASCII 27 correspond à la touche "Escape" sur un clavier. On attend ici un appuie de 30ms sur l'image webcam pour stopper le processus
+        ):  # Le code ASCII 27 correspond à la touche "escape" sur un clavier. On attend ici un appuie de 30ms sur l'image webcam pour stopper le processus et donc éteindre la webcam
             break
 
 
