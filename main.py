@@ -1,4 +1,6 @@
 # Anthony RENARD 🦊-  23/10/2023
+# https://www.linkedin.com/in/anthonyrenardfox/
+
 # Détections d'objets en live par Yolov8n.pt
 
 # Importation des blibliothèques utiles
