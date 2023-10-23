@@ -12,7 +12,7 @@ from ultralytics import YOLO
 
 def main():
     
-    model = YOLO("yolov8n.pt") #Chargement du modèle
+    model = YOLO("yolov8n.pt") # Chargement du modèle
     
     webcam = cv2.VideoCapture(0)  # Activation de la caméra
 
