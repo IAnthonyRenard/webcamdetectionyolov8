@@ -11,15 +11,16 @@ from ultralytics import YOLO
 
 
 def main():
-    capture = cv2.VideoCapture(0)  # Activation de la caméra
-
+    
     model = YOLO("yolov8n.pt") #Chargement du modèle
+    
+    webcam = cv2.VideoCapture(0)  # Activation de la caméra
 
-    # Création des boites annotées lors de la détection
-    boite_annotee= sv.BoxAnnotator(thickness=2, text_thickness=1, text_scale=1)
+    boite_annotee= sv.BoxAnnotator(thickness=2, text_thickness=1, text_scale=1) # Création des boites annotées lors de la détection
 
     while True:  # Création d'une boucle infinie pour faire de la détection sur la vidéo
-        ret, frame = capture.read()  # Lecture d'une image de la webcam
+        
+        ret, frame = webcam.read()  # Lecture d'une image de la webcam
 
         result = model(frame)[
             0
@@ -33,7 +34,7 @@ def main():
         ]  # Ajout des étiquettes à chaque détection (en plus des problabilités)
 
         frame = boite_annotee.annotate(
-            scene=frame, detections=detections, labels=etiquettes
+            scene=frame, labels=etiquettes, detections=detections
         )  # Création de l'image annotée
 
         cv2.imshow("Detection des objets sur votre webcam par Anthony RENARD", frame)  # Affichage de l'image annotée
