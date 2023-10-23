@@ -41,7 +41,7 @@ def main():
 
         if (
             cv2.waitKey(30) == 27
-        ):  # Le code ASCII 27 correspond à la touche "escape" sur un clavier. On attend ici un appuie de 30ms sur l'image webcam pour stopper le processus et donc éteindre la webcam
+        ):  # Le code ASCII 27 correspond à la touche "escape" sur un clavier. On attend ici un appui de 30ms sur l'image webcam pour stopper le processus et donc éteindre la webcam
             break
 
 
