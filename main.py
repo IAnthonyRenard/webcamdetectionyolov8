@@ -14,7 +14,7 @@ def main():
     model = YOLO("yolov8n.pt")
 
     # Création des boite annotées lors de la détection
-    box_annotator = sv.BoxAnnotator(thickness=1, text_thickness=1, text_scale=1)
+    box_annotator = sv.BoxAnnotator(thickness=3, text_thickness=1, text_scale=1)
 
     while True:  # Création d'une boucle infinie pour faire de la détection sur la vidéo
         ret, frame = capture.read()  # Lecture d'une image de la webcam
