@@ -11,7 +11,7 @@ from ultralytics import YOLO
 def main():
     capture = cv2.VideoCapture(0)  # Activation de la caméra
 
-    model = YOLO("yolov8n.pt")
+    model = YOLO("yolov8n.pt") #Chargement du modèle
 
     # Création des boite annotées lors de la détection
     boite_annotee= sv.BoxAnnotator(thickness=2, text_thickness=1, text_scale=1)
